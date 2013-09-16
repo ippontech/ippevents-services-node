@@ -1,0 +1,8 @@
+{
+  "name": "ippevents-services-node",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": ">=2.2.0",
+    "mongoose":""
+  }
+}
