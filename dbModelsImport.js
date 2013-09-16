@@ -4,7 +4,6 @@ Fichier de configuration à la base de données et permettant d'importer les mod
 
 // dépendances modules
 mongoose = require('mongoose'), Schema = mongoose.Schema;
-
 // déclaration des modèles
 members = require('./models/members');
 events = require('./models/events');
@@ -12,6 +11,8 @@ events = require('./models/events');
 /* connexion à la base de données */
 // local
 mongoose.connect('mongodb://localhost/iedb');
+// mongolab
+// mongoose.connect('mongodb://<user>:<password>@<database>');
 
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
