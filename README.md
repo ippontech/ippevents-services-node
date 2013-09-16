@@ -3,17 +3,20 @@
 
 ***
 
-Les IppEvents est une application Web permettant de promouvoir des événements (conférences / ateliers / jeux sérieux / retours d'expérience).
+**IppEvents** est une application Web permettant de promouvoir des événements (conférences / ateliers / jeux sérieux / retours d'expérience).
 
-Ce projet est la partie "back" du projet IppEvents, c'est lui qui permet de créer, d'accéder, de modifier des données.
+Ce projet est la partie "back" du projet **IppEvents**, c'est lui qui permet de créer, d'accéder, de modifier des données.
+
+Ce projet s'appuie sur [Node.js](http://nodejs.org/) pour la partie serveur et [MongoDB](http://www.mongodb.org/) pour la partie persistance.
+
+Il est possible de faire appel à une base MongoDB locale ou sur un service 
+d'hébergement dédié ; par exemple [mongolab](https://mongolab.com)
 
 ## 1. Environnement requis
 
 1. Installer [Git](http://git-scm.com/)
 2. Installer [Node.js](http://nodejs.org/)
-3. Installer [MongoDB](http://www.mongodb.org/)
-
-Vous avez le choix entre installer l'environnment sur votre poste ou utiliser une machine virtuelle de type Linux
+3. Installer [MongoDB](http://www.mongodb.org/) pour utiliser une base locale
 
 #### 1.1.3. Espace de travail
 
@@ -38,11 +41,11 @@ Se positioner dans le répertoire créé
 
 	cd ~/workspace/ippevents-services-node
 
-S'assurer d'être ok au niveau des dépendances
+S'assurer d'être ok au niveau des dépendances Node.js
 
 	sudo npm install
 	
-#### 3. Démarrer Mongo DB
+#### 3. Démarrer MongoDB
 
 Démarrer la base
 
