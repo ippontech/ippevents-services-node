@@ -45,7 +45,7 @@ S'assurer d'être ok au niveau des dépendances Node.js
 
 	sudo npm install
 	
-#### 3. Démarrer MongoDB
+#### 3. Démarrer MongoDB (pour utiliser une base locale)
 
 Démarrer la base
 
@@ -67,4 +67,4 @@ Démarrer le serveur Node.js (Express)
 
 	node server.js
 
-S'assurer que le [service "Members" est opérationnel](http://localhost:3000/members)
+S'assurer que le [service "Members" est opérationnel](http://localhost:3000/members) et si il n'y a malheureusement aucun membre de votre base de données, c'est qu'il est temps d'installer la [partie "front" du projet](https://github.com/ippontech/ippevents-front-node) ;)
