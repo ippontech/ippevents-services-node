@@ -10,9 +10,9 @@ events = require('./models/events');
 
 /* connexion à la base de données */
 // local
-mongoose.connect('mongodb://localhost/iedb');
+// mongoose.connect('mongodb://localhost/iedb');
 // mongolab
-// mongoose.connect('mongodb://<user>:<password>@<database>');
+mongoose.connect('mongodb://<user>:<pwd>@ds043338.mongolab.com:43338/iedb');
 
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
