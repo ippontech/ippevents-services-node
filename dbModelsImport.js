@@ -11,6 +11,7 @@ events = require('./models/events');
 /* connexion à la base de données */
 // local
 mongoose.connect('mongodb://localhost/iedb');
+
 // mongolab
 // mongoose.connect('mongodb://<user>:<password>@<database>');
 
