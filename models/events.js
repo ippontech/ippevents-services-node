@@ -1,25 +1,60 @@
 
-// déclaration du schéma
+// déclaration du schéma d'une session
+var sessionSchema = new mongoose.Schema({
+  title: String,
+  format: String,
+  timebox: String,
+  status: String
+  // speaker : [ memberAssocie.memberSchema ],
+});
+
+// déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
+var sessionModel = mongoose.model('session', sessionSchema);
+
+// déclaration du schéma d'un événement
 var eventSchema = new mongoose.Schema({
   title : String,
   dateBegin : String,
-  address : [{ 
+  address : [{
+    title: String,
     street: String,
     postal: String,
     city: String,
     region: String,
     geolocalisation : {latitude: Number, longitude: Number}
-    }],
+  }],
+  performances : [{
+    title: String,
+    format: String,
+    timebox: Number,
+    status: String,
+    speakers: [{
+      firstname: String,
+      lastname: String,
+      email: String,
+      twitter: String,
+      phone: String,
+      biography: String
+    }]
+  }],
   teasing: String,
   summary: String,
   description: String,
   maxPeople: Number,
-  picture: String,
-  sessions: { type: Schema.Types.ObjectId, ref:'sessions'}
+  picture: String
+  // sessions: [{
+  //   title: String,
+  //   format: String
+  // }]
+  // sessions: [{ type: Schema.Types.ObjectId, ref:'session'}]
 });
+
+
 
 // déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
 var eventModel = mongoose.model('events', eventSchema);
+
+
 
 exports.addEvent = function(req, res) {
   // création d'une instance du modèle

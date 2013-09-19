@@ -1,5 +1,6 @@
 
-# IppEvents Services (via Node.js)
+# IppEvents Services
+(via Node.js / MongoDB)
 
 ***
 
@@ -12,40 +13,44 @@ Ce projet s'appuie sur [Node.js](http://nodejs.org/) pour la partie serveur et [
 Il est possible de faire appel à une base MongoDB locale ou sur un service 
 d'hébergement dédié ; par exemple [mongolab](https://mongolab.com)
 
+***
+
 ## 1. Environnement requis
+
+### 1.1. Installations requises
 
 1. Installer [Git](http://git-scm.com/)
 2. Installer [Node.js](http://nodejs.org/)
 3. Installer [MongoDB](http://www.mongodb.org/) pour utiliser une base locale
 
-#### 1.1.3. Espace de travail
+### 1.2. Espace de travail
 
-Créer un espace de travail. Pour simplifier la suite, celui-ci se situera ~/workspace
+Créer un espace de travail. Pour simplifier la suite, celui-ci se situera ~/workspaces
 
 ## 2. Installation du projet
 
-#### 1. Récupérer les sources
+### 2.1. Récupérer les sources
 
 En ligne de commande, se positionner au bon endroit
 
-	cd ~/workspace
+	cd ~/workspaces
 	
 Récupérer les sources du repository GitHub
 
 	git clone https://github.com/ippontech/ippevents-services-node.git
 
 
-#### 2. Récupérer les dépendances
+### 2.2. Récupérer les dépendances
 
 Se positioner dans le répertoire créé
 
-	cd ~/workspace/ippevents-services-node
+	cd ~/workspaces/ippevents-services-node
 
 S'assurer d'être ok au niveau des dépendances Node.js
 
 	sudo npm install
 	
-#### 3. Démarrer MongoDB (pour utiliser une base locale)
+### 2.3. Démarrer MongoDB (pour utiliser une base locale)
 
 Démarrer la base
 
@@ -57,11 +62,11 @@ Démarrer la base
 	
 	mongod
 	
-#### 4. Démarrer le serveur Node.js
+### 2.4. Démarrer le serveur Node.js
 
 Dans une nouvelle fenêtre, se positioner dans le répertoire approprié
 
-	cd ~/workspace/ippevents-services-node
+	cd ~/workspaces/ippevents-services-node
 	
 Démarrer le serveur Node.js (Express)
 

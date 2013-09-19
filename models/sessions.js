@@ -1,20 +1,25 @@
+var memberAssocie = require('./members.js');
 
-// déclaration du schéma
-memberSchema = new mongoose.Schema({
-  firstname : String,
-  lastname : String,
-  email : String,
-  twitter : String
+// déclaration du schéma d'une session
+var sessionSchema = new mongoose.Schema({
+  title : String,
+  format : String,
+  timebox: String,
+  status: String,
+  speaker : [ memberAssocie.memberSchema ],
 });
 
-// déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
-var memberModel = mongoose.model('members', memberSchema);
 
-exports.addMember = function(req, res) {
+// déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
+var sessionModel = mongoose.model('sessions', sessionSchema);
+
+
+
+exports.addSession = function(req, res) {
   // création d'une instance du modèle
-  var newMember = new memberModel(req.body);
+  var newSession = new sessionModel(req.body);
   // sauvegarde de l'instance
-  newMember.save(function (err, result) {
+  newSession.save(function (err, result) {
     if (err) {
       console.log('Error :' + err);
       throw err;
@@ -29,23 +34,11 @@ exports.addMember = function(req, res) {
   });
 };
 
-exports.findById = function(req, res) {
-  // récupération de l'identifiant
-  var id = req.params.id;
-  // récupération du document
-  memberModel.findById(id, function (err, result) {
-    if (err) {
-      console.log('Error :' + err);
-      throw err;
-    } else {
-      console.log('Success : ' + result + ' document(s) found');
-      res.send(result);
-    }
-  });
-};
+
+
 
 exports.findAll = function(req, res) {
-  memberModel.find(null, function (err, items) {
+  sessionModel.find(null, function (err, items) {
     if (err) {
       console.log('Error :' + err);
       throw err;
@@ -58,18 +51,19 @@ exports.findAll = function(req, res) {
   });
 };
 
-exports.updateMember = function(req, res) {
+
+exports.updateSession = function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   console.log('Updating : ' + id);
   // création d'une instance du modèle
-  // var updateMember = new memberModel(req.body);
-  var updateMember = req.body;
-  delete updateMember._id;
+  // var updateSession = new sessionModel(req.body);
+  var updateSession = req.body;
+  delete updateSession._id;
 
-  console.log('MEMBER :' + JSON.stringify(updateMember));
+  console.log('EVENT :' + JSON.stringify(updateSession));
   // mise à jour du document
-  memberModel.findByIdAndUpdate(id, updateMember, function (err, result) {
+  sessionModel.findByIdAndUpdate(id, updateSession, function (err, result) {
     if (err) {
       console.log('Error :' + err);
       throw err;
@@ -81,12 +75,12 @@ exports.updateMember = function(req, res) {
   });
 }
 
-exports.deleteMember = function(req, res) {
+exports.deleteSession = function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   console.log('Deleting : ' + id);
   // suppression
-  memberModel.remove({_id : id }, function (err, result) {
+  sessionModel.remove({_id : id }, function (err, result) {
     if (err) {
       console.log('Error :' + err);
       throw err;
@@ -98,3 +92,8 @@ exports.deleteMember = function(req, res) {
     }
   });
 }
+
+
+
+
+
