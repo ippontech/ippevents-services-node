@@ -1,15 +1,30 @@
 
-// déclaration du schéma d'une session
-var sessionSchema = new mongoose.Schema({
+var performanceSchema = new mongoose.Schema({
   title: String,
   format: String,
   timebox: String,
-  status: String
-  // speaker : [ memberAssocie.memberSchema ],
+  status: String,
+  grade: Number,
+  teasing: String,
+  summary: String,
+  description: String,
+  goodToKnow: String,
+  needs: String,
+  level: String,
+  maxPeople: Number,
+  picture: String,
+  // speakers: [{
+    firstname: String,
+    lastname: String,
+    email: String,
+    twitter: String,
+    phone: String,
+    biography: String,
+    company: String
+  // }]
 });
-
 // déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
-var sessionModel = mongoose.model('session', sessionSchema);
+var performanceModel = mongoose.model('performances', performanceSchema);
 
 // déclaration du schéma d'un événement
 var eventSchema = new mongoose.Schema({
@@ -23,30 +38,11 @@ var eventSchema = new mongoose.Schema({
     region: String,
     geolocalisation : {latitude: Number, longitude: Number}
   }],
-  performances : [{
-    title: String,
-    format: String,
-    timebox: Number,
-    status: String,
-    speakers: [{
-      firstname: String,
-      lastname: String,
-      email: String,
-      twitter: String,
-      phone: String,
-      biography: String
-    }]
-  }],
+  performances: [performanceSchema],
   teasing: String,
   summary: String,
   description: String,
-  maxPeople: Number,
   picture: String
-  // sessions: [{
-  //   title: String,
-  //   format: String
-  // }]
-  // sessions: [{ type: Schema.Types.ObjectId, ref:'session'}]
 });
 
 
@@ -75,15 +71,15 @@ exports.addEvent = function(req, res) {
   });
 };
 
-exports.findById = function(req, res) {
-    var id = req.params.id;
-    console.log('Retrieving wine: ' + id);
-    db.collection('wines', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
-            res.send(item);
-        });
-    });
-};
+// exports.findById = function(req, res) {
+//     var id = req.params.id;
+//     console.log('Retrieving wine: ' + id);
+//     db.collection('wines', function(err, collection) {
+//         collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+//             res.send(item);
+//         });
+//     });
+// };
 
 exports.findById = function(req, res) {
   // récupération de l'identifiant
