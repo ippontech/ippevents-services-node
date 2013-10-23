@@ -7,6 +7,7 @@ mongoose = require('mongoose'), Schema = mongoose.Schema;
 // déclaration des modèles
 members = require('./models/members');
 events = require('./models/events');
+persons = require('./models/persons');
 
 /* connexion à la base de données */
 // local

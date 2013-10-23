@@ -1,4 +1,5 @@
 var memberAssocie = require('./members.js');
+var personAssocie = require('./persons.js');
 
 // déclaration du schéma d'une session
 var sessionSchema = new mongoose.Schema({
@@ -6,7 +7,7 @@ var sessionSchema = new mongoose.Schema({
   format : String,
   timebox: String,
   status: String,
-  speaker : [ memberAssocie.memberSchema ],
+  speaker : [ memberAssocie.memberSchema ]
 });
 
 

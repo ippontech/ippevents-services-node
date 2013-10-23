@@ -6,6 +6,15 @@ server.post('/members', members.addMember);
 server.put('/members/:id', members.updateMember);
 server.delete('/members/:id', members.deleteMember);
 
+// relatifs au module persons
+server.get('/persons', persons.findAll);
+server.get('/person/:id', persons.findById);
+server.post('/person', persons.addPerson);
+//server.get('/personsInit', persons.initTest);
+server.put('/person/:id', persons.updatePerson);
+//server.get('/deletePerson/:id', persons.deletePerson);
+server.delete('/person/:id', persons.deletePerson);
+
 // relatifs au module events
 server.get('/events', events.findAll);
 server.get('/events/:id', events.findById);
