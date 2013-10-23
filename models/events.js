@@ -55,6 +55,16 @@ var eventSchema = new mongoose.Schema({
 // déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
 var eventModel = mongoose.model('events', eventSchema);
 
+var handle = function(handler) {
+  return function(err, result) {
+    if (err) {
+      console.log('Error :' + err);
+      throw err;
+    } else {
+      handler(result)
+    }
+  }
+}
 
 
 exports.addEvent = function(req, res) {
@@ -158,4 +168,18 @@ exports.deleteEvent = function(req, res) {
       res.send(req.body);
     }
   });
+}
+
+exports.findPerformance = function(req, res) {
+    var eventId = req.params.event_id;
+    var performanceId = req.params.performance_id;
+
+    eventModel.findById(eventId, handle(function(result) {
+      for (var i = 0; i < result.performances.length; i++) {
+        var performance = result.performances[i]
+        if (performance._id == performanceId) {
+          res.send(performance)
+        }
+      }
+    }));
 }

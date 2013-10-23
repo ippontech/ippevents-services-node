@@ -13,3 +13,5 @@ server.post('/events', events.addEvent);
 server.put('/events/:id', events.updateEvent);
 server.delete('/events/:id', events.deleteEvent);
 
+server.get('/events/:event_id/performances/:performance_id', events.findPerformance);
+
