@@ -28,6 +28,7 @@ var eventSchema = new mongoose.Schema({
     format: String,
     timebox: Number,
     status: String,
+    description: String,
     speakers: [{
       firstname: String,
       lastname: String,
