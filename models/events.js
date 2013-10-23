@@ -71,29 +71,22 @@ exports.addEvent = function(req, res) {
   // création d'une instance du modèle
   var newEvent = new eventModel(req.body);
   // sauvegarde de l'instance
-  newEvent.save(function (err, result) {
-    if (err) {
-      console.log('Error :' + err);
-      throw err;
-      // console.log('Error :' + err);
-      // res.send({'Error :' + err});
-    } else {
+  newEvent.save(handle(function(result) {
       console.log('Success : ' + JSON.stringify(result[0]) + ' added');
       res.send(result[0]);
-    }
     // On se déconnecte de MongoDB maintenant
     // mongoose.connection.close();
-  });
+  }));
 };
 
 exports.findById = function(req, res) {
     var id = req.params.id;
     console.log('Retrieving wine: ' + id);
-    db.collection('wines', function(err, collection) {
-        collection.findOne({'_id':new BSON.ObjectID(id)}, function(err, item) {
+    db.collection('wines', handle(function(collection) {
+        collection.findOne({'_id':new BSON.ObjectID(id)}, handle(function(item) {
             res.send(item);
-        });
-    });
+        }));
+    }));
 };
 
 exports.findById = function(req, res) {
@@ -101,35 +94,20 @@ exports.findById = function(req, res) {
   var id = req.params.id;
 
   // récupération du document
-  eventModel.findById(id, function (err, result) {
-    if (err) {
-      console.log('Error :' + err);
-      throw err;
-      // res.send({'Error :' + err});
-    } else {
-      console.log('Success : ' + result + ' document(s) found');
-      res.send(result);
-    }
-  });
+  eventModel.findById(id, handle(function(result) {
+    console.log('Success : ' + result + ' document(s) found');
+    res.send(result);
+  }));
 };
 
 
 exports.findAll = function(req, res) {
   eventModel.find()
   .populate('sessions')
-  .exec(
-
-    function (err, items) {
-    if (err) {
-      console.log('Error :' + err);
-      throw err;
-      // console.log('Error :' + err);
-      // res.send({'Error :' + err});
-    } else {
-      console.log('Success : ' + items + ' found');
-      res.send(items);
-    }
-  });
+  .exec(handle(function(items) {
+    console.log('Success : ' + items + ' found');
+    res.send(items);
+  }));
 };
 
 exports.updateEvent = function(req, res) {
@@ -140,16 +118,10 @@ exports.updateEvent = function(req, res) {
   delete updateEvent._id;
   console.log('Updating event ' + id + ' EVENT :' + JSON.stringify(updateEvent));
   // mise à jour du document
-  eventModel.findByIdAndUpdate(id, updateEvent, function (err, result) {
-    if (err) {
-      console.log('Error :' + err);
-      throw err;
-      // res.send({'Error :' + err});
-    } else {
-      console.log('Success : ' + result + ' document(s) updated');
-      res.send(result);
-    }
-  });
+  eventModel.findByIdAndUpdate(id, updateEvent, handle(function(result) {
+    console.log('Success : ' + result + ' document(s) updated');
+    res.send(result);
+  }));
 }
 
 exports.deleteEvent = function(req, res) {
@@ -157,17 +129,10 @@ exports.deleteEvent = function(req, res) {
   var id = req.params.id;
   console.log('Deleting : ' + id);
   // suppression
-  eventModel.remove({_id : id }, function (err, result) {
-    if (err) {
-      console.log('Error :' + err);
-      throw err;
-      // console.log('Error :' + err);
-      // res.send({'Error :' + err});
-    } else {
+  eventModel.remove({_id : id }, handle(function(result) {
       console.log('Success : ' + result + ' document(s) deleted');
       res.send(req.body);
-    }
-  });
+  }));
 }
 
 exports.findPerformance = function(req, res) {
