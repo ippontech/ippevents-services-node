@@ -176,10 +176,12 @@ exports.findPerformance = function(req, res) {
 
     eventModel.findById(eventId, handle(function(result) {
       for (var i = 0; i < result.performances.length; i++) {
-        var performance = result.performances[i]
+        var performance = result.performances[i];
         if (performance._id == performanceId) {
-          res.send(performance)
+          res.send(performance);
+          return;
         }
       }
+      res.send(404);
     }));
 }
