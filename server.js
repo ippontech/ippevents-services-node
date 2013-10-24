@@ -18,7 +18,7 @@ server.configure(function () {
 });
 
 // 
-require('./routes/router.js');
+require('./routes/router.js')(server);
 
 // démarrage serveur
 server.listen(server.get('port'), function() {
