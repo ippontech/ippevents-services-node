@@ -4,5 +4,8 @@
   "dependencies": {
     "express": ">=2.2.0",
     "mongoose":""
+  },
+  "main": "server.js",
+  "script": {
   }
 }
