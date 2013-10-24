@@ -1,15 +1,4 @@
-
-// déclaration du schéma d'une session
-var sessionSchema = new mongoose.Schema({
-  title: String,
-  format: String,
-  timebox: String,
-  status: String
-  // speaker : [ memberAssocie.memberSchema ],
-});
-
-// déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
-var sessionModel = mongoose.model('session', sessionSchema);
+var sessionAssocie = require('./sessions.js');
 
 // déclaration du schéma d'un événement
 var eventSchema = new mongoose.Schema({
@@ -23,21 +12,8 @@ var eventSchema = new mongoose.Schema({
     region: String,
     geolocalisation : {latitude: Number, longitude: Number}
   }],
-  performances : [{
-    title: String,
-    format: String,
-    timebox: Number,
-    status: String,
-    description: String,
-    speakers: [{
-      firstname: String,
-      lastname: String,
-      email: String,
-      twitter: String,
-      phone: String,
-      biography: String
-    }]
-  }],
+  performances : [sessionAssocie.sessionSchema]
+  ,
   teasing: String,
   summary: String,
   description: String,

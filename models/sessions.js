@@ -7,7 +7,8 @@ var sessionSchema = new mongoose.Schema({
   format : String,
   timebox: String,
   status: String,
-  speaker : [ memberAssocie.memberSchema ]
+  speakers : [ memberAssocie.memberSchema ],
+  persons : [personAssocie.personSchema]
 });
 
 

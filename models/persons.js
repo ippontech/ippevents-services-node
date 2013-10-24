@@ -1,8 +1,8 @@
 
 // déclaration du schéma d'une personne
 var personSchema = new mongoose.Schema({
-  first_name: String,
-  last_name: String,
+  firstname: String,
+  lastname: String,
   email: String
 });
 
