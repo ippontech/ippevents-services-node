@@ -14,7 +14,8 @@ var sessionModel = mongoose.model('session', sessionSchema);
 // déclaration du schéma d'un événement
 var eventSchema = new mongoose.Schema({
   title : String,
-  dateBegin : String,
+  dateBegin : Date,
+  dateEnd : Date,
   address : [{
     title: String,
     street: String,
