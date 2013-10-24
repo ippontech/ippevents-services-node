@@ -25,4 +25,6 @@ module.exports = function(server){
 
   server.get('/events/:event_id/performances/:performance_id', events.findPerformance);
 
+  server.get('/findAllSpeakers',events.findAllSpeakers);
+
 };

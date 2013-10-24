@@ -150,3 +150,26 @@ exports.findPerformance = function(req, res) {
       res.send(404);
     }));
 }
+
+
+exports.findAllSpeakers = function(req, res){
+
+  var speakers= [];
+
+  eventModel.find()
+  .populate('sessions')
+  .exec(handle(function(items) {
+    for(var t = 0; t < items.length; t++){
+      for (var i = 0; i < items[t].performances.length; i++) {
+        var performance = items[t].performances[i];
+        if(performance){
+          for (var j = 0; j < performance.speakers.length; j++){
+              speakers.push(performance.speakers[j]);
+          }
+        }
+      }
+    }
+      res.send(speakers);
+    }));
+}
+
