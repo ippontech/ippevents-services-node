@@ -7,7 +7,7 @@ require('./dbModelsImport.js');
 var cors = require("./cors");
 
 // configuration serveur
-server = express();
+var server = express();
 server.configure(function () {
   server.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
   server.use(express.cookieParser());

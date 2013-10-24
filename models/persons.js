@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 
 // déclaration du schéma d'une personne
 var personSchema = new mongoose.Schema({

@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 
 // déclaration du schéma d'une session
 var sessionSchema = new mongoose.Schema({
@@ -149,27 +150,39 @@ exports.findPerformance = function(req, res) {
       }
       res.send(404);
     }));
-}
+};
 
 
 exports.findAllSpeakers = function(req, res){
 
   var speakers= [];
 
-  eventModel.find()
-  .populate('sessions')
-  .exec(handle(function(items) {
-    for(var t = 0; t < items.length; t++){
-      for (var i = 0; i < items[t].performances.length; i++) {
-        var performance = items[t].performances[i];
-        if(performance){
-          for (var j = 0; j < performance.speakers.length; j++){
-              speakers.push(performance.speakers[j]);
-          }
-        }
-      }
-    }
+  eventModel.find({}, {
+    "_id":0,
+    "performances.speakers" :1
+  }).exec(function(err, items) {
+      if(err || !items) return res.send([]);
+
+      var speakers = items.map(function(item){
+        console.log(item.toJSON());
+        return item.toJSON().performances;
+      }).reduce(function(prev, cur){
+
+        cur.forEach(function(performance){
+          prev.push(performance);
+        });
+
+        return prev;
+      }, []).reduce(function(prev, cur){
+
+        cur.speakers.forEach(function(speaker){
+          prev.push(speaker);
+        });
+
+        return prev;
+      }, []);
+
       res.send(speakers);
-    }));
-}
+    });
+};
 

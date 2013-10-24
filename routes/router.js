@@ -1,30 +1,34 @@
+var Members = require('../models/members');
+var Persons = require('../models/persons');
+var Events = require('../models/events');
 
 module.exports = function(server){
   // relatifs au module members
-  server.get('/members', members.findAll);
-  server.get('/members/:id', members.findById);
-  server.post('/members', members.addMember);
-  server.put('/members/:id', members.updateMember);
-  server.delete('/members/:id', members.deleteMember);
+  debugger;
+  server.get('/members', Members.findAll);
+  server.get('/members/:id', Members.findById);
+  server.post('/members', Members.addMember);
+  server.put('/members/:id', Members.updateMember);
+  server.delete('/members/:id', Members.deleteMember);
 
   // relatifs au module persons
-  server.get('/persons', persons.findAll);
-  server.get('/person/:id', persons.findById);
-  server.post('/person', persons.addPerson);
+  server.get('/persons', Persons.findAll);
+  server.get('/person/:id', Persons.findById);
+  server.post('/person', Persons.addPerson);
   //server.get('/personsInit', persons.initTest);
-  server.put('/person/:id', persons.updatePerson);
+  server.put('/person/:id', Persons.updatePerson);
   //server.get('/deletePerson/:id', persons.deletePerson);
-  server.delete('/person/:id', persons.deletePerson);
+  server.delete('/person/:id', Persons.deletePerson);
 
   // relatifs au module events
-  server.get('/events', events.findAll);
-  server.get('/events/:id', events.findById);
-  server.post('/events', events.addEvent);
-  server.put('/events/:id', events.updateEvent);
-  server.delete('/events/:id', events.deleteEvent);
+  server.get('/events', Events.findAll);
+  server.get('/events/:id', Events.findById);
+  server.post('/events', Events.addEvent);
+  server.put('/events/:id', Events.updateEvent);
+  server.delete('/events/:id', Events.deleteEvent);
 
-  server.get('/events/:event_id/performances/:performance_id', events.findPerformance);
+  server.get('/events/:event_id/performances/:performance_id', Events.findPerformance);
 
-  server.get('/findAllSpeakers',events.findAllSpeakers);
+  server.get('/findAllSpeakers',Events.findAllSpeakers);
 
 };

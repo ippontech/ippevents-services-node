@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 
 // déclaration du schéma
 memberSchema = new mongoose.Schema({
@@ -7,10 +8,7 @@ memberSchema = new mongoose.Schema({
   twitter : String
 });
 
-// déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
-var memberModel = mongoose.model('members', memberSchema);
-
-exports.addMember = function(req, res) {
+memberSchema.static('addMember', function(req, res) {
   // création d'une instance du modèle
   var newMember = new memberModel(req.body);
   // sauvegarde de l'instance
@@ -27,9 +25,9 @@ exports.addMember = function(req, res) {
     // On se déconnecte de MongoDB maintenant
     // mongoose.connection.close();
   });
-};
+});
 
-exports.findById = function(req, res) {
+memberSchema.static('findById', function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   // récupération du document
@@ -42,9 +40,9 @@ exports.findById = function(req, res) {
       res.send(result);
     }
   });
-};
+});
 
-exports.findAll = function(req, res) {
+memberSchema.static('findAll', function(req, res) {
   memberModel.find(null, function (err, items) {
     if (err) {
       console.log('Error :' + err);
@@ -56,9 +54,9 @@ exports.findAll = function(req, res) {
       res.send(items);
     }
   });
-};
+});
 
-exports.updateMember = function(req, res) {
+memberSchema.static('updateMember', function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   console.log('Updating : ' + id);
@@ -79,9 +77,9 @@ exports.updateMember = function(req, res) {
       res.send(result);
     }
   });
-}
+});
 
-exports.deleteMember = function(req, res) {
+memberSchema.static('deleteMember',function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   console.log('Deleting : ' + id);
@@ -97,4 +95,7 @@ exports.deleteMember = function(req, res) {
       res.send(req.body);
     }
   });
-}
+});
+
+// déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
+var memberModel = module.exports = mongoose.model('members', memberSchema);

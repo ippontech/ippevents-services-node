@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+
 var memberAssocie = require('./members.js');
 var personAssocie = require('./persons.js');
 
