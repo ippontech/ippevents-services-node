@@ -11,7 +11,8 @@ server = express();
 server.configure(function () {
   server.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
   server.use(express.cookieParser());
-  server.use(express.bodyParser());
+  server.use(express.urlencoded());
+  server.use(express.json());
   server.use(cors.express);
   // configuration du port d'écoute
   server.set('port', process.env.PORT || 3000);  
