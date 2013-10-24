@@ -30,4 +30,6 @@ module.exports = function(server){
 
   server.get('/findAllSpeakers',Events.findAllSpeakers);
 
+  server.get('/getPerformancesBySpeaker/:nom/:prenom',events.getPerformancesBySpeaker);
+
 };
