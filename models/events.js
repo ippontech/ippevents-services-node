@@ -151,6 +151,33 @@ exports.findPerformance = function(req, res) {
     }));
 }
 
+exports.getPerformancesBySpeaker = function(req, res) {
+  // récupération des nom prénoms du speaker
+  var nom = req.params.nom;
+  var prenom = req.params.prenom;
+
+  var performances = [];
+
+  eventModel.find()
+  .populate('sessions')
+  .exec(handle(function(items) {
+    for(var t = 0; t < items.length; t++) {
+      for (var i = 0; i < items[t].performances.length; i++) {
+        var performance = items[t].performances[i];
+        if(performance){
+          for (var j = 0; j < performance.speakers.length; j++){
+              var speaker = performance.speakers[j];
+              if (nom == speaker.lastname && prenom == speaker.firstname) {
+                performances.push(performance);
+              }
+          }
+        }
+      }
+    }
+    res.send(performances)
+  }));
+
+}
 
 exports.findAllSpeakers = function(req, res){
 
