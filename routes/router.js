@@ -4,7 +4,6 @@ var Events = require('../models/events');
 
 module.exports = function(server){
   // relatifs au module members
-  debugger;
   server.get('/members', Members.findAll);
   server.get('/members/:id', Members.findById);
   server.post('/members', Members.addMember);
