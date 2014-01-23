@@ -5,12 +5,12 @@
     "express": ">=2.2.0",
     "mongoose": ""
   },
-  "main": "server.js",
-  "script": {},
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jasmine": "~0.5.2",
     "grunt-contrib-jshint": "~0.8.0",
     "matchdep": "~0.3.0"
-  }
+  },
+  "main": "server.js",
+  "script": {}
 }
