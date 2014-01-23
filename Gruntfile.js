@@ -28,6 +28,21 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.registerTask('install-hook', function () {
+    var fs = require('fs');
+
+    // my precommit hook is inside the repo as /hooks/pre-commit
+    // copy the hook file to the correct place in the .git directory
+    grunt.file.copy('hooks/pre-commit', '.git/hooks/pre-commit');
+
+    // chmod the file to readable and executable by all
+    fs.chmodSync('.git/hooks/pre-commit', '755');
+  });
+
+  grunt.task.run('install-hook');
+
+  // ### Custom tasks
+
   grunt.registerTask('test', ['jshint', 'jasmine']);
 
   // ### task runned when "git commit"
