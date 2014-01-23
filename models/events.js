@@ -15,7 +15,8 @@ var sessionModel = mongoose.model('session', sessionSchema);
 // déclaration du schéma d'un événement
 var eventSchema = new mongoose.Schema({
   title : String,
-  dateBegin : String,
+  dateBegin : Date,
+  dateEnd : Date,
   address : [{
     title: String,
     street: String,
@@ -103,12 +104,22 @@ exports.findById = function(req, res) {
 
 
 exports.findAll = function(req, res) {
-  eventModel.find()
-  .populate('sessions')
-  .exec(handle(function(items) {
-    console.log('Success : ' + items + ' found');
-    res.send(items);
-  }));
+  if (req.param('pastEvents')) {
+    eventModel.find()
+    .populate('sessions')
+    .exec(handle(function(items) {
+      console.log('Success : ' + items + ' found');
+      res.send(items);
+    }));
+  } else {
+    eventModel.find()
+    .where('dateEnd').gt(new Date())
+    .populate('sessions')
+    .exec(handle(function(items) {
+      console.log('Success : ' + items + ' found');
+      res.send(items);
+    }));
+  }
 };
 
 exports.updateEvent = function(req, res) {
