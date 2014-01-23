@@ -30,4 +30,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', ['jshint', 'jasmine']);
 
+  // ### task runned when "git commit"
+  grunt.registerTask('precommit', ['test']);
+
 };
