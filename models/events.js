@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+var utilsMethods = require('./utils.js');
+
 // déclaration du schéma d'une session
 var sessionSchema = new mongoose.Schema({
   title: String,
@@ -157,25 +159,10 @@ exports.getPerformancesBySpeaker = function(req, res) {
   var nom = req.params.nom;
   var prenom = req.params.prenom;
 
-  var performances = [];
-
   eventModel.find()
   .populate('sessions')
   .exec(handle(function(items) {
-    for(var t = 0; t < items.length; t++) {
-      for (var i = 0; i < items[t].performances.length; i++) {
-        var performance = items[t].performances[i];
-        if(performance){
-          for (var j = 0; j < performance.speakers.length; j++){
-              var speaker = performance.speakers[j];
-              if (nom == speaker.lastname && prenom == speaker.firstname) {
-                performances.push(performance);
-              }
-          }
-        }
-      }
-    }
-    res.send(performances)
+    res.send(utilsMethods.allPerformancesByFirstnameAndLastname(items, prenom, nom));
   }));
 
 }
