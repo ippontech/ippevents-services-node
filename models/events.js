@@ -55,7 +55,7 @@ var eventSchema = new mongoose.Schema({
 
 
 // déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
-eventModel = mongoose.model('events', eventSchema);
+var eventModel = mongoose.model('events', eventSchema);
 
 var handle = function(handler) {
   return function(err, result) {

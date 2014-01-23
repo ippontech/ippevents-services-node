@@ -32,7 +32,7 @@ module.exports = function (grunt) {
   grunt.registerTask('populate', 'populate the database', function() {
     console.log("populating db...");
 
-    require('./models/events');
+    var Events = require('./models/events');
 
     // async mode
     var done = this.async();
@@ -48,8 +48,11 @@ module.exports = function (grunt) {
       console.log("connection opened");  
 
       // création d'une instance du modèle
-      var newEvent = new eventModel({"title":"title2","dateBegin":"2014-01-24T05:00:00.000Z","dateEnd":"2014-01-25T05:00:00.000Z","teasing":"accroche1","summary":"desc1","picture":"img1"});
-      newEvent.save();/*handle(function(result) {
+      //var newEvent = new eventModel({"title":"title2","dateBegin":"2014-01-24T05:00:00.000Z","dateEnd":"2014-01-25T05:00:00.000Z","teasing":"accroche1","summary":"desc1","picture":"img1"});
+      Events.addEvent({ "body" : {"title":"title2","dateBegin":"2014-01-24T05:00:00.000Z","dateEnd":"2014-01-25T05:00:00.000Z","teasing":"accroche1","summary":"desc1","picture":"img1"}}, null);
+
+      /*newEvent.save(); handle(function(result) {
+
         console.log('Success : ' + JSON.stringify(result[0]) + ' added');
       }));*/
 
