@@ -15,6 +15,13 @@ d'hébergement dédié ; par exemple [mongolab](https://mongolab.com)
 
 ***
 
+## Tests unitaires avec Jasmine
+
+1. lancer la tâche grunt : grunt test
+
+
+***
+
 ## 1. Environnement requis
 
 ### 1.1. Installations requises
