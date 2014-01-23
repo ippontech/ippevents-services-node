@@ -8,7 +8,7 @@ memberSchema = new mongoose.Schema({
   twitter : String
 });
 
-memberSchema.static('addMember', function(req, res) {
+exports.addMember = function(req, res) {
   // création d'une instance du modèle
   var newMember = new memberModel(req.body);
   // sauvegarde de l'instance
@@ -25,9 +25,9 @@ memberSchema.static('addMember', function(req, res) {
     // On se déconnecte de MongoDB maintenant
     // mongoose.connection.close();
   });
-});
+};
 
-memberSchema.static('findById', function(req, res) {
+exports.findById = function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   // récupération du document
@@ -40,9 +40,9 @@ memberSchema.static('findById', function(req, res) {
       res.send(result);
     }
   });
-});
+};
 
-memberSchema.static('findAll', function(req, res) {
+exports.findAll = function(req, res) {
   memberModel.find(null, function (err, items) {
     if (err) {
       console.log('Error :' + err);
@@ -54,9 +54,9 @@ memberSchema.static('findAll', function(req, res) {
       res.send(items);
     }
   });
-});
+};
 
-memberSchema.static('updateMember', function(req, res) {
+exports.updateMember = function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   console.log('Updating : ' + id);
@@ -77,9 +77,9 @@ memberSchema.static('updateMember', function(req, res) {
       res.send(result);
     }
   });
-});
+};
 
-memberSchema.static('deleteMember',function(req, res) {
+exports.deleteMember = function(req, res) {
   // récupération de l'identifiant
   var id = req.params.id;
   console.log('Deleting : ' + id);
@@ -95,7 +95,7 @@ memberSchema.static('deleteMember',function(req, res) {
       res.send(req.body);
     }
   });
-});
+};
 
 // déclaration du modèle qui va nous permettre d'intéragir avec les données correspondant au schéma
-var memberModel = module.exports = mongoose.model('members', memberSchema);
+var memberModel = mongoose.model('members', memberSchema);
