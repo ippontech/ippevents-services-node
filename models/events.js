@@ -31,6 +31,7 @@ var eventSchema = new mongoose.Schema({
     timebox: Number,
     status: String,
     description: String,
+    interest: Number,
     speakers: [{
       firstname: String,
       lastname: String,
