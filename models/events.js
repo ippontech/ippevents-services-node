@@ -73,9 +73,10 @@ var handle = function(handler) {
 exports.addEvent = function(req, res) {
   // création d'une instance du modèle
   var newEvent = new eventModel(req.body);
+  console.log('newEvent : ' + JSON.stringify(newEvent));
   // sauvegarde de l'instance
   newEvent.save(handle(function(result) {
-      console.log('Success : ' + JSON.stringify(result[0]) + ' added');
+      console.log('Success : ' + JSON.stringify(result) + ' added');
       res.send(result[0]);
     // On se déconnecte de MongoDB maintenant
     // mongoose.connection.close();
