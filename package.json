@@ -2,7 +2,7 @@
   "name": "ippevents-services-node",
   "version": "0.1.0",
   "dependencies": {
-    "express": ">=2.2.0",
+    "express": "3.8.1",
     "mongoose": ""
   },
   "main": "server.js",
